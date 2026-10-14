@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.data ? 'Update Student' : 'Basic Registration' %></title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #ffffff;
+            color: #1e1b4b;
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 400px;
+            padding: 35px 30px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            border-top: 8px solid #14b8a6;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #4338ca;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 14px;
+            border: 2px solid #e0e7ff;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #f8faff;
+        }
+        input:focus {
+            outline: none;
+            border-color: #14b8a6;
+            background: #fff;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        button {
+            padding: 11px 26px;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            background: #14b8a6;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #0d9488; }
+
+        a {
+            color: #4338ca;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1><%= locals.data ? 'Update Student' : 'Register Student' %></h1>
+
+        <form action="<%= locals.data ? '/update/' + data.id : '/register' %>" method="POST">
+            <input type="text" name="ln" placeholder="Enter lastname"
+                   value="<%= locals.data ? data.ln : '' %>" required>
+
+            <input type="text" name="fn" placeholder="Enter Firstname"
+                   value="<%= locals.data ? data.fn : '' %>" required>
+
+            <input type="number" name="age" placeholder="Enter Age"
+                   value="<%= locals.data ? data.age : '' %>" required>
+
+            <div class="actions">
+                <button type="submit"><%= locals.data ? 'Save' : 'Register' %></button>
+                <a href="/view"><%= locals.data ? 'Cancel' : 'View list' %></a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Students</title>
+
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #ffffff;
+            color: #1e1b4b;
+            margin: 0;
+            min-height: 100vh;
+            padding: 20px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #ffffff;
+            width: 100%;
+            max-width: 650px;
+            padding: 35px 30px;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
+            border-top: 8px solid #14b8a6;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #4338ca;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th {
+            background: #4338ca;
+            color: #fff;
+            padding: 12px 10px;
+        }
+        th:first-child { border-top-left-radius: 8px; }
+        th:last-child { border-top-right-radius: 8px; }
+
+        td {
+            padding: 12px 10px;
+            text-align: center;
+            border-bottom: 1px solid #e0e7ff;
+        }
+        tr:nth-child(even) td { background: #f8faff; }
+        tr:hover td { background: #e6fffa; }
+
+        a {
+            color: #4338ca;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover { text-decoration: underline; }
+        a.delete { color: #e11d48; }
+
+        .top-link {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>List of Students</h1>
+        <a class="top-link" href="/">+ Register new student</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Number</th>
+                    <th>Lastname</th>
+                    <th>Firstname</th>
+                    <th>Age</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (student.length === 0) { %>
+                    <tr>
+                        <td colspan="5">No students found.</td>
+                    </tr>
+                <% } %>
+
+                <% for (const data of student) { %>
+                    <tr>
+                        <td><%= data.id %></td>
+                        <td><%= data.ln %></td>
+                        <td><%= data.fn %></td>
+                        <td><%= data.age %></td>
+                        <td>
+                            <a class="delete" href="/delete/<%= data.id %>"
+                               onclick="return confirm('Do you want to delete this account?')">Delete</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
